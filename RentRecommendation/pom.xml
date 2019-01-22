@@ -9,6 +9,13 @@
 	<name>RentRecommendation Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
+		<!-- JSoup -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.8.3</version>
+		</dependency>
+
 		<!-- Servlet相关 -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -71,7 +78,7 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>4.0.4.RELEASE</version>
 		</dependency>
-		
+
 		<!-- Hibernate相关 -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -83,21 +90,21 @@
 			<artifactId>persistence-api</artifactId>
 			<version>1.0.2</version>
 		</dependency>
-		
+
 		<!-- MySQL相关 -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.34</version>
 		</dependency>
-		
+
 		<!-- 日志相关 -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
-		
+
 		<!-- Junit相关 -->
 		<dependency>
 			<groupId>junit</groupId>
