@@ -12,7 +12,7 @@ public class HttpUtilTest {
 	public static void main(String[] args) {
 		Document jsoup;
 		try {
-			jsoup = Jsoup.connect("https://shenzhen.leyoujia.com//zf/detail/7575453.html").get();
+			jsoup = Jsoup.connect("https://sz.58.com/chuzu/").get();
 			System.out.println(jsoup.html());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
