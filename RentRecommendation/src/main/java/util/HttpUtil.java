@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Random;
 
 public class HttpUtil {
 	
@@ -17,10 +18,17 @@ public class HttpUtil {
         BufferedReader br = null;
         String result = null;// 返回结果字符串
         try {
-            // 创建远程url连接对象
+
             URL url = new URL(httpurl);
-            // 通过远程url连接对象打开一个连接，强转成httpURLConnection类
+         // 通过远程url连接对象打开一个连接，强转成httpURLConnection类
             connection = (HttpURLConnection) url.openConnection();
+            String ip = randIP();
+            System.getProperties().setProperty("http.proxyHost", "111.181.38.9");
+            System.getProperties().setProperty("http.proxyPort", "9999");
+            connection.setRequestProperty("accept", "*/*");
+            connection.setRequestProperty("connection", "Keep-Alive");
+            connection.setRequestProperty("user-agent",
+                    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
             // 设置连接方式：get
             connection.setRequestMethod("GET");
             // 设置连接主机服务器的超时时间：15000毫秒
@@ -149,4 +157,12 @@ public class HttpUtil {
         }
         return result;
     }
+	
+	public static String randIP() {
+		Random random = new Random(System.currentTimeMillis());
+		return (random.nextInt(255) + 1) + "." + (random.nextInt(255) + 1)
+				+ "." + (random.nextInt(255) + 1) + "."
+				+ (random.nextInt(255) + 1);
+	}
+
 }
