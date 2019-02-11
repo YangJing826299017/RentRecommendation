@@ -12,6 +12,9 @@ import entity.LeYouJiaRoom;
 
 //解析乐有家页面
 public class AnalyzeLeYouJiaPageUtil {
+    
+    private static  String prefix="https://shenzhen.leyoujia.com";
+
 	
 	public static  List<LeYouJiaRoom> getResult(String htmlContent){
 		Document document=Jsoup.parse(htmlContent);
@@ -30,7 +33,7 @@ public class AnalyzeLeYouJiaPageUtil {
 		LeYouJiaRoom room=new LeYouJiaRoom();
 		//1.获取picturePath
 		String picturePath=element.select(".img a").attr("href");
-		room.setPicturePath(picturePath);
+		room.setRoomUrl(prefix+picturePath);
 		//2.roomName
 		String roomName=element.select(".text .tit a").attr("title");
 		room.setRoomName(roomName);
