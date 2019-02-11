@@ -1,5 +1,6 @@
 package util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.jsoup.Jsoup;
@@ -13,13 +14,14 @@ public class AnalyzeGanJiPageUtil {
 	private static String listItem=".ershoufang-list>dl>dd.title>a";
 	
 	public static List<String> getResult(String htmlContent) {
+		List<String> listResult=new ArrayList<String>();
 		Document document=Jsoup.parse(htmlContent);
 		Elements elements=document.select(listItem);
 		for (Element oneItem : elements) {
 			String href=oneItem.attr("href");
-			System.out.println(href);
+			listResult.add(prefix+href);
 		}
-		return null;
+		return listResult;
 	}
 
 }

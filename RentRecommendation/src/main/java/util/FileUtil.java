@@ -12,15 +12,16 @@ import java.io.UnsupportedEncodingException;
 
 public class FileUtil {
 	
-	public static void writeInFile(String filePath,String fileName,String fileContent) throws IOException {
+	public static void writeInFile(String filePath,String fileName,String fileContent,boolean isAppend) throws IOException {
 		File file=new File(filePath,fileName);
 		//创建文件
 		if(!file.exists()) {
 			file.createNewFile();
 		}
-		FileWriter fw = new FileWriter(file.getAbsoluteFile());
+		FileWriter fw = new FileWriter(file.getAbsoluteFile(),isAppend);
 		BufferedWriter bw = new BufferedWriter(fw);
 		bw.write(fileContent);
+		bw.newLine();
 		bw.close();
 	}
 	

@@ -14,7 +14,8 @@ public class HttpUtilTest {
 		String content=HttpUtil.doGet("https://shenzhen.anjuke.com/community/view/188778");
 		FileUtil.writeInFile("D:\\yangjing\\test","安居客小区信息1.txt", content);
 		*/
-		AnalyzeAnjukeRoomUtil.getResult(FileUtil.getContent("D:\\yangjing\\test","安居客小区信息1.txt"));
+		List<String> list=AnalyzeGanJiPageUtil.getResult(FileUtil.getContent("D:\\yangjing\\test","赶集网首页1.txt"));
+		System.out.println(list);
 	}
 
 }
