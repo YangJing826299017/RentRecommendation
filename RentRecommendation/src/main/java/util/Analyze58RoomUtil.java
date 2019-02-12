@@ -32,7 +32,6 @@ public class Analyze58RoomUtil {
         Document document=Jsoup.parse(htmlContent);
         FiveEightRoom room=new FiveEightRoom();
         room.setRoomName(document.select(roomName).get(roomNameIndex).text());
-        
         return room;
     }
 

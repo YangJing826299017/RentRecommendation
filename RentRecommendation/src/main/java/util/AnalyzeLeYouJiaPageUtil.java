@@ -16,14 +16,14 @@ public class AnalyzeLeYouJiaPageUtil {
     private static  String prefix="https://shenzhen.leyoujia.com";
 
 	
-	public static  List<LeYouJiaRoom> getResult(String htmlContent){
+	public static  List<String> getResult(String htmlContent){
 		Document document=Jsoup.parse(htmlContent);
 		//1.筛选出列表中的每一个节点
 		Elements elements=document.select(".list-box .item");
 		//2.遍历所有节点,转化成实体LeYouJiaRoom
-		List<LeYouJiaRoom> list=new ArrayList<LeYouJiaRoom>();
+		List<String> list=new ArrayList<String>();
 		for(Element one:elements) {
-			list.add(parseOneElement(one));
+			list.add(parseOneElement(one).getRoomUrl());
 		}
 		
 		return list;

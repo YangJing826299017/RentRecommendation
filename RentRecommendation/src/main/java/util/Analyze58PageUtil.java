@@ -10,7 +10,7 @@ import org.jsoup.select.Elements;
 
 import entity.FiveEightRoom;
 
-public class Analyze58RoomPageUtil {
+public class Analyze58PageUtil {
     
     private static String prefix="http:";
     
