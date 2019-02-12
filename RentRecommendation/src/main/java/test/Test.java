@@ -3,14 +3,14 @@ package test;
 import java.io.IOException;
 
 import entity.Room;
-import util.AnalyzeAnjukeRoomUtil;
-import util.HttpUtil;
+import util.AnalyzeLeYouJiaRoomUtil;
+import util.FileUtil;
 
 public class Test {
 
 	public static void main(String[] args) throws IOException {
-		String roomUrl="https://sz.zu.anjuke.com/fangyuan/1270161415";
-		Room room=AnalyzeAnjukeRoomUtil.getResult(HttpUtil.doGet(roomUrl),roomUrl);
+		String roomUrl="https://shenzhen.leyoujia.com/zf/detail/7575453.html";
+		Room room=AnalyzeLeYouJiaRoomUtil.getResult(FileUtil.getContent("D:\\yangjing\\test","乐有家房屋信息1.txt"),roomUrl);
 		System.out.println(room.toString());
 	}
 

@@ -22,13 +22,13 @@ public class AnalyzeAnjukeRoomUtil {
     private static String decorationDegree=".house-info-item>span.info";//装修程度
     private static int decorationDegreeIndex=4;//装修程度
     private static String communityName=".house-info-item>a.link";//小区名字
+    private static int communityNameIndex=0;
     private static String communityUrlAttr="href";
 
     private static String housingSourceCharacteristics=".auto-general";//房源特色
     private static String housingAllocation=".peitao-item.has>.peitao-info";//房屋配置 
     
     /**小区信息*/
-    private static int communityNameIndex=0;
     private static String communityAddress=".sub-hd";
     private static String buildArea="dl.basic-parms-mod>dd";//建筑面积
     private static int buildAreaIndex=2;

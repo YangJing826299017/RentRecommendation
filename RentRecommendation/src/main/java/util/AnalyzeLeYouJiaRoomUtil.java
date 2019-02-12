@@ -14,6 +14,7 @@ import entity.Room;
 
 public class AnalyzeLeYouJiaRoomUtil {
     
+	private static String prefix="https://shenzhen.leyoujia.com";
     private static String roomName=".tit-conno";//房间名字
     private static String roomType=".intro-box2>span:nth-child(1)";//户型N室N房
     private static String totalArea=".intro-box2>span:nth-child(2)";//建筑面积
@@ -32,17 +33,17 @@ public class AnalyzeLeYouJiaRoomUtil {
     private static int rentMoneyIndex=0;
     private static String rentMoneyUnit="span.price-1";//租金单位
     private static int rentMoneyUnitIndex=0;
-    private static List<String> rentWays;//租借方式 [整租/押二付款一]
     private static String houseOrientation="em.ml20.c333";//房屋朝向
     private static int houseOrientationIndex=3;
     private static String housingAllocation=".fy-intro-icons>li";//房屋配置 
     private static String housingSourceCharacteristics="p.mb15";//房源特色
     private static String subwayStation=".list-box";//地铁站
     private static int subwayStationIndex=0;//地铁站
-    private static Map<String,String> busStation;//公交站
+    private static Map<String,String> busStation=new HashMap<String,String>();//公交站
     
     /**小区信息*/
     private static String communityName=".infomation-hd>span>a";//小区名字
+    private static String communityUrlAttr="href";
     private static String liveNumber="li.w1>span";//规划户数
     private static int liveNumberIndex=3;
     private static String buildArea="li.w2>span";//建筑面积
@@ -55,10 +56,12 @@ public class AnalyzeLeYouJiaRoomUtil {
     private static int afforestationRateIndex=7;
     private static String propertyCompany="li.w2>span";//物业公司
     private static int propertyCompanyIndex=7;
+    private static String communityAddress=".tit-addr";
     
-    public static Room getResult(String htmlContent){
+    public static Room getResult(String htmlContent,String roomUrl){
         Room room=new Room();
         Document document=Jsoup.parse(htmlContent);
+        room.setRoomUrl(roomUrl);
         //1.房间名字
         room.setRoomName(document.select(roomName).attr("title"));
         //2.户型N室N房
@@ -97,6 +100,8 @@ public class AnalyzeLeYouJiaRoomUtil {
         //=====小区信息===
         //1.小区名字
         room.setCommunityName(document.select(communityName).text());
+        String communityUrl=document.select(communityName).attr(communityUrlAttr);
+        room.setCommunityUrl(prefix+communityUrl);
         //4.建造年代
         room.setCommunityBuildYear(document.select(buildYear).get(buildYearIndex).text());
         //5.规划户数
@@ -111,6 +116,8 @@ public class AnalyzeLeYouJiaRoomUtil {
         room.setCommunityAfforestationRate(document.select(afforestationRate).get(afforestationRateIndex).text());
         //10.物业公司
         room.setCommunityPropertyCompany(document.select(propertyCompany).get(propertyCompanyIndex).text());
+        //11.小区地址
+        room.setCommunityAddress(getCommunityAddress(prefix+communityUrl));
         return room;
     }
     
@@ -158,6 +165,11 @@ public class AnalyzeLeYouJiaRoomUtil {
     private static Map<String,String> getBusStation(Document document){
         Map<String,String> map=new HashMap<String, String>();
         return map;
+    }
+    
+    private static String getCommunityAddress(String communityUrl) {
+    	Document document=Jsoup.parse(HttpUtil.doGet(communityUrl));
+    	return document.select(communityAddress).text();
     }
     
 }

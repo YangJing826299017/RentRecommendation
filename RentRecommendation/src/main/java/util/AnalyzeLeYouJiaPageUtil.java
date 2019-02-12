@@ -15,7 +15,6 @@ public class AnalyzeLeYouJiaPageUtil {
     
     private static  String prefix="https://shenzhen.leyoujia.com";
 
-	
 	public static  List<String> getResult(String htmlContent){
 		Document document=Jsoup.parse(htmlContent);
 		//1.筛选出列表中的每一个节点
