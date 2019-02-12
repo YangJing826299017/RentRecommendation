@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class Room {
     
+	/**基本信息*/
     private String roomUrl;
     private String roomName;//房间名字
     private String rentMoney;//租金
@@ -20,7 +21,18 @@ public class Room {
     private String realArea;//房间实际面积
     private String height;//楼高
     private String address;//地址
-    private String description;//描述,以逗号间隔
+    private String totalArea;//建筑面积
+	private String roomBuildYear;//建成时间
+    
+    /**小区信息*/
+    private String communityName;//小区名字
+    private String communityBuildYear;//建造年代
+    private String communityLiveNumber;//规划户数
+    private String communityBuildArea;//建筑面积
+    private String communityPlotRatio;//容积率
+    private String communityNumberOfParkingSpaces;//车位个数
+    private String communityAfforestationRate;//绿化率
+    private String communityPropertyCompany;//物业公司
 
     
     public String getRoomType() {
@@ -52,12 +64,6 @@ public class Room {
     }
     public void setAddress(String address) {
         this.address = address;
-    }
-    public String getDescription() {
-        return description;
-    }
-    public void setDescription(String description) {
-        this.description = description;
     }
     public String getUnit() {
         return unit;
@@ -121,5 +127,65 @@ public class Room {
     public void setRoomName(String roomName) {
         this.roomName = roomName;
     }
+	public String getCommunityName() {
+		return communityName;
+	}
+	public void setCommunityName(String communityName) {
+		this.communityName = communityName;
+	}
+	public String getTotalArea() {
+		return totalArea;
+	}
+	public void setTotalArea(String totalArea) {
+		this.totalArea = totalArea;
+	}
+	public String getCommunityBuildYear() {
+		return communityBuildYear;
+	}
+	public void setCommunityBuildYear(String communityBuildYear) {
+		this.communityBuildYear = communityBuildYear;
+	}
+	public String getCommunityLiveNumber() {
+		return communityLiveNumber;
+	}
+	public void setCommunityLiveNumber(String communityLiveNumber) {
+		this.communityLiveNumber = communityLiveNumber;
+	}
+	public String getCommunityBuildArea() {
+		return communityBuildArea;
+	}
+	public void setCommunityBuildArea(String communityBuildArea) {
+		this.communityBuildArea = communityBuildArea;
+	}
+	public String getCommunityPlotRatio() {
+		return communityPlotRatio;
+	}
+	public void setCommunityPlotRatio(String communityPlotRatio) {
+		this.communityPlotRatio = communityPlotRatio;
+	}
+	public String getCommunityNumberOfParkingSpaces() {
+		return communityNumberOfParkingSpaces;
+	}
+	public void setCommunityNumberOfParkingSpaces(String communityNumberOfParkingSpaces) {
+		this.communityNumberOfParkingSpaces = communityNumberOfParkingSpaces;
+	}
+	public String getCommunityAfforestationRate() {
+		return communityAfforestationRate;
+	}
+	public void setCommunityAfforestationRate(String communityAfforestationRate) {
+		this.communityAfforestationRate = communityAfforestationRate;
+	}
+	public String getCommunityPropertyCompany() {
+		return communityPropertyCompany;
+	}
+	public void setCommunityPropertyCompany(String communityPropertyCompany) {
+		this.communityPropertyCompany = communityPropertyCompany;
+	}
+	public String getRoomBuildYear() {
+		return roomBuildYear;
+	}
+	public void setRoomBuildYear(String roomBuildYear) {
+		this.roomBuildYear = roomBuildYear;
+	}
     
 }

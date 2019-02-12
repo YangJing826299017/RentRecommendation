@@ -8,19 +8,19 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import entity.FiveEightRoom;
+import entity.Room;
 
 public class Analyze58PageUtil {
     
     private static String prefix="http:";
     
-    public static List<FiveEightRoom> getResult(String htmlContent){
-        List<FiveEightRoom> listRoom=new ArrayList<FiveEightRoom>();
+    public static List<Room> getResult(String htmlContent){
+        List<Room> listRoom=new ArrayList<Room>();
         Document document=Jsoup.parse(htmlContent);
         Elements listDes=document.select(".des");
         for (Element one : listDes) {
             String url=one.select("h2>a").attr("href");
-            FiveEightRoom room=new FiveEightRoom();
+            Room room=new Room();
             room.setRoomUrl(prefix+url);
             listRoom.add(room);
         }

@@ -8,7 +8,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import entity.LeYouJiaRoom;
+import entity.Room;
 
 //解析乐有家页面
 public class AnalyzeLeYouJiaPageUtil {
@@ -29,8 +29,8 @@ public class AnalyzeLeYouJiaPageUtil {
 		return list;
 	}
 	
-	private static LeYouJiaRoom parseOneElement(Element element) {
-		LeYouJiaRoom room=new LeYouJiaRoom();
+	private static Room parseOneElement(Element element) {
+		Room room=new Room();
 		//1.获取picturePath
 		String picturePath=element.select(".img a").attr("href");
 		room.setRoomUrl(prefix+picturePath);
@@ -54,21 +54,12 @@ public class AnalyzeLeYouJiaPageUtil {
 		room.setHeight(height);
 		//8.buildYear 建成时间
 		String buildYear=element.select(".text .attr span").get(6).text();
-		room.setBuildYear(buildYear);
+		room.setRoomBuildYear(buildYear);
 		//9.address 地址
 		String address1=element.select(".text .attr span").get(8).select("a").get(0).html();
 		String address2=element.select(".text .attr span").get(8).select("a").get(1).html();
 		String address3=element.select(".text .attr span").get(7).select("a").html();
 		room.setAddress(address1+"-"+address2+"-"+address3);
-		//10.description 描述,以逗号间隔
-		Elements labs=element.select(".text .labs .lab");
-		StringBuilder sbLabs=new StringBuilder();
-		for (Element lab : labs) {
-			String one=lab.html();
-			sbLabs.append(one+",");
-		}
-		String description=sbLabs.toString().endsWith(",")?sbLabs.substring(0,sbLabs.length()-1):sbLabs.toString();
-		room.setDescription(description);
 		return room;
 	}
 

@@ -9,8 +9,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import entity.LeYouJiaCommunity;
-import entity.LeYouJiaRoom;
+import entity.Room;
+
 
 public class AnalyzeLeYouJiaRoomUtil {
     
@@ -26,7 +26,6 @@ public class AnalyzeLeYouJiaRoomUtil {
     private static int buildYearIndex=4;
     private static String address="a.area-cur";//地址
     private static int addressIndex=2;
-    private static String description;//描述,以逗号间隔
     
     /**详细页特有信息*/
     private static String rentMoney="em.total";//租金
@@ -34,7 +33,6 @@ public class AnalyzeLeYouJiaRoomUtil {
     private static String rentMoneyUnit="span.price-1";//租金单位
     private static int rentMoneyUnitIndex=0;
     private static List<String> rentWays;//租借方式 [整租/押二付款一]
-    private static String roomNumber="";//房源编号
     private static String houseOrientation="em.ml20.c333";//房屋朝向
     private static int houseOrientationIndex=3;
     private static String housingAllocation=".fy-intro-icons>li";//房屋配置 
@@ -45,8 +43,6 @@ public class AnalyzeLeYouJiaRoomUtil {
     
     /**小区信息*/
     private static String communityName=".infomation-hd>span>a";//小区名字
-    private static String rentNumber="";//在租房屋数量
-    private static String saleNumber;//在卖房屋数量
     private static String liveNumber="li.w1>span";//规划户数
     private static int liveNumberIndex=3;
     private static String buildArea="li.w2>span";//建筑面积
@@ -60,8 +56,8 @@ public class AnalyzeLeYouJiaRoomUtil {
     private static String propertyCompany="li.w2>span";//物业公司
     private static int propertyCompanyIndex=7;
     
-    public static LeYouJiaRoom getResult(String htmlContent){
-        LeYouJiaRoom room=new LeYouJiaRoom();
+    public static Room getResult(String htmlContent){
+        Room room=new Room();
         Document document=Jsoup.parse(htmlContent);
         //1.房间名字
         room.setRoomName(document.select(roomName).attr("title"));
@@ -76,11 +72,9 @@ public class AnalyzeLeYouJiaRoomUtil {
         //6.楼高
         room.setHeight(document.select(height).get(heightIndex).text());
         //7.建成时间
-        room.setBuildYear(document.select(buildYear).get(buildYearIndex).text());
+        room.setRoomBuildYear(document.select(buildYear).get(buildYearIndex).text());
         //8.地址
         room.setAddress(document.select(address).get(addressIndex).text());
-        //9.描述,以逗号间隔
-        room.setDescription("页面未详细写!");
         //10.租金
         String money=document.select(rentMoney).get(rentMoneyIndex).text();
         room.setRentMoney(money);
@@ -99,8 +93,24 @@ public class AnalyzeLeYouJiaRoomUtil {
         room.setSubwayStation(getSubwayStation(document));
         //18.公交站
         room.setBusStation(getBusStation(document));
-        //19.小区信息
-        room.setCommunity(getCommunity(document));
+        
+        //=====小区信息===
+        //1.小区名字
+        room.setCommunityName(document.select(communityName).text());
+        //4.建造年代
+        room.setCommunityBuildYear(document.select(buildYear).get(buildYearIndex).text());
+        //5.规划户数
+        room.setCommunityLiveNumber(document.select(liveNumber).get(liveNumberIndex).text());
+        //6.建筑面积
+        room.setCommunityBuildArea(document.select(buildArea).get(buildAreaIndex).text());
+        //7.容积率
+        room.setCommunityPlotRatio(document.select(plotRatio).get(plotRatioIndex).text());
+        //8.车位个数
+        room.setCommunityNumberOfParkingSpaces(document.select(numberOfParkingSpaces).get(numberOfParkingSpacesIndex).text());
+        //9.绿化率
+        room.setCommunityAfforestationRate(document.select(afforestationRate).get(afforestationRateIndex).text());
+        //10.物业公司
+        room.setCommunityPropertyCompany(document.select(propertyCompany).get(propertyCompanyIndex).text());
         return room;
     }
     
@@ -150,30 +160,4 @@ public class AnalyzeLeYouJiaRoomUtil {
         return map;
     }
     
-    //获取小区信息
-    private static LeYouJiaCommunity getCommunity(Document document){
-        LeYouJiaCommunity community=new LeYouJiaCommunity();
-        //1.小区名字
-        community.setCommunityName(document.select(communityName).text());
-        //2.在租房屋数量
-        community.setRentNumber("");
-        //3.在卖房屋数量
-        community.setSaleNumber("");
-        //4.建造年代
-        community.setBuildYear(document.select(buildYear).get(buildYearIndex).text());
-        //5.规划户数
-        community.setLiveNumber(document.select(liveNumber).get(liveNumberIndex).text());
-        //6.建筑面积
-        community.setBuildArea(document.select(buildArea).get(buildAreaIndex).text());
-        //7.容积率
-        community.setPlotRatio(document.select(plotRatio).get(plotRatioIndex).text());
-        //8.车位个数
-        community.setNumberOfParkingSpaces(document.select(numberOfParkingSpaces).get(numberOfParkingSpacesIndex).text());
-        //9.绿化率
-        community.setAfforestationRate(document.select(afforestationRate).get(afforestationRateIndex).text());
-        //10.物业公司
-        community.setPropertyCompany(document.select(propertyCompany).get(propertyCompanyIndex).text());
-        return community;
-    }
-
 }

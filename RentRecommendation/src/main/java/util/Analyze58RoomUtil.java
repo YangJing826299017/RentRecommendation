@@ -6,7 +6,7 @@ import java.util.Map;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import entity.FiveEightRoom;
+import entity.Room;
 
 public class Analyze58RoomUtil {
     
@@ -28,9 +28,9 @@ public class Analyze58RoomUtil {
     private static String address;//地址
     private static String description;//描述,以逗号间隔
     
-    public static FiveEightRoom getResult(String htmlContent){
+    public static Room getResult(String htmlContent){
         Document document=Jsoup.parse(htmlContent);
-        FiveEightRoom room=new FiveEightRoom();
+        Room room=new Room();
         room.setRoomName(document.select(roomName).get(roomNameIndex).text());
         return room;
     }
