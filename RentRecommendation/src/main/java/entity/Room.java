@@ -203,6 +203,11 @@ public class Room {
 	public void setCommunityUrl(String communityUrl) {
 		this.communityUrl = communityUrl;
 	}
+	
+	public String toGson() {
+		return new Gson().toJson(this);
+	}
+	
 	@Override
 	public String toString() {
 		return new Gson().toJson(this);
