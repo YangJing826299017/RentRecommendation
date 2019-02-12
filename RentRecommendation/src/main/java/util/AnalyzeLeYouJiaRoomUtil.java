@@ -125,7 +125,7 @@ public class AnalyzeLeYouJiaRoomUtil {
     }
     
     //获取租借方式
-    private static List<String> getRentWays(Document document){
+    private static String getRentWays(Document document){
         return null;
     }
     

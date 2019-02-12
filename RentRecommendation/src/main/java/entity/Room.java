@@ -1,39 +1,42 @@
 package entity;
 
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
+
+import com.google.gson.Gson;
 
 public class Room {
     
 	/**基本信息*/
-    private String roomUrl;
-    private String roomName;//房间名字
-    private String rentMoney;//租金
-    private String unit;//租金单位
-    private List<String> rentWays;//租借方式 [整租/押二付款一]
-    private String houseOrientation;//房屋朝向
-    private String housingAllocation;//房屋配置 
-    private String housingSourceCharacteristics;//房源特色
-    private Map<String,String> busStation;//公交站
-    private Map<String,String> subwayStation;//地铁站
-    private String roomType;//户型N室N房
-    private String decorationDegree;//装修程度
-    private String realArea;//房间实际面积
-    private String height;//楼高
-    private String address;//地址
-    private String totalArea;//建筑面积
-	private String roomBuildYear;//建成时间
+    private String roomUrl="";
+    private String roomName="";//房间名字
+    private String rentMoney="";//租金
+    private String unit="";//租金单位
+    private String rentWays="";//租借方式 [整租/押二付款一]
+    private String houseOrientation="";//房屋朝向
+    private String housingAllocation="";//房屋配置 
+    private String housingSourceCharacteristics="";//房源特色
+    private Map<String,String> busStation=new HashMap<String, String>();//公交站
+    private Map<String,String> subwayStation=new HashMap<String, String>();//地铁站
+    private String roomType="";//户型N室N房
+    private String decorationDegree="";//装修程度
+    private String realArea="";//房间实际面积
+    private String height="";//楼高
+    private String address="";//地址
+    private String totalArea="";//建筑面积
+	private String roomBuildYear="";//建成时间
     
     /**小区信息*/
-    private String communityName;//小区名字
-    private String communityBuildYear;//建造年代
-    private String communityLiveNumber;//规划户数
-    private String communityBuildArea;//建筑面积
-    private String communityPlotRatio;//容积率
-    private String communityNumberOfParkingSpaces;//车位个数
-    private String communityAfforestationRate;//绿化率
-    private String communityPropertyCompany;//物业公司
-
+	private String communityUrl="";//小区地址
+    private String communityName="";//小区名字
+    private String communityBuildYear="";//建造年代
+    private String communityLiveNumber="";//规划户数
+    private String communityBuildArea="";//建筑面积
+    private String communityPlotRatio="";//容积率
+    private String communityNumberOfParkingSpaces="";//车位个数
+    private String communityAfforestationRate="";//绿化率
+    private String communityPropertyCompany="";//物业公司
+    private String communityAddress="";//物业地址
     
     public String getRoomType() {
         return roomType;
@@ -71,10 +74,10 @@ public class Room {
     public void setUnit(String unit) {
         this.unit = unit;
     }
-    public List<String> getRentWays() {
+    public String getRentWays() {
         return rentWays;
     }
-    public void setRentWays(List<String> rentWays) {
+    public void setRentWays(String rentWays) {
         this.rentWays = rentWays;
     }
     public String getHouseOrientation() {
@@ -186,6 +189,23 @@ public class Room {
 	}
 	public void setRoomBuildYear(String roomBuildYear) {
 		this.roomBuildYear = roomBuildYear;
+	}
+	public String getCommunityAddress() {
+		return communityAddress;
+	}
+	public void setCommunityAddress(String communityAddress) {
+		this.communityAddress = communityAddress;
+	}
+	
+	public String getCommunityUrl() {
+		return communityUrl;
+	}
+	public void setCommunityUrl(String communityUrl) {
+		this.communityUrl = communityUrl;
+	}
+	@Override
+	public String toString() {
+		return new Gson().toJson(this);
 	}
     
 }
