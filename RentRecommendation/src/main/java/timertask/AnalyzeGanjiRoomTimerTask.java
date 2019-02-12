@@ -19,7 +19,6 @@ public class AnalyzeGanjiRoomTimerTask extends TimerTask{
 		//2.用Http请求获取html
 		String htmlContent=HttpUtil.doGet(url);
 		System.out.println(url);
-		System.out.println(htmlContent);
 		//3.用RoomUtil转化为对应的实体
 		Room room=AnalyzeGanJiRoomUtil.getResult(htmlContent, url);
 		//4.将room对应的json格式文件写入txt中
