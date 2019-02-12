@@ -8,6 +8,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+//赶集网房源首页Url:http://sz.ganji.com/zufang/pn1/
 public class AnalyzeGanJiPageUtil {
 	
 	private static String prefix="";

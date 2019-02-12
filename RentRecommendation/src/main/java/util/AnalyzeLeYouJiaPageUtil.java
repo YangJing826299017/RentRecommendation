@@ -10,7 +10,7 @@ import org.jsoup.select.Elements;
 
 import entity.Room;
 
-//解析乐有家页面
+//解析乐有家房源首页Url:https://shenzhen.leyoujia.com/zf/?n=1
 public class AnalyzeLeYouJiaPageUtil {
     
     private static  String prefix="https://shenzhen.leyoujia.com";
@@ -24,7 +24,6 @@ public class AnalyzeLeYouJiaPageUtil {
 		for(Element one:elements) {
 			list.add(parseOneElement(one).getRoomUrl());
 		}
-		
 		return list;
 	}
 	

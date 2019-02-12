@@ -8,6 +8,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+//安居客房源首页URL：https://sz.zu.anjuke.com/fangyuan/p1/
 public class AnalyzeAnjukePageUtil {
 	
 	private static String prefix="";
