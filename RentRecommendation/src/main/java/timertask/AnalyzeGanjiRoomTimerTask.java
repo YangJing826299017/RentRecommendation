@@ -17,8 +17,16 @@ public class AnalyzeGanjiRoomTimerTask extends TimerTask{
 		//1.从数据库读取一条房间url
 		String url=roomUrlDao.selectRoomUrlByUtilName("赶集网");
 		//2.用Http请求获取html
-		String htmlContent=HttpUtil.doGet(url);
-		System.out.println(url);
+		String htmlContent="";
+		String locationUrl="";
+		if(url.contains("https://jxjump.58.com/service?")) {
+			locationUrl=htmlContent=HttpUtil.getResponseHeaderFiled(url,"location");
+			System.out.println(locationUrl);
+			htmlContent=HttpUtil.doGet(locationUrl);
+			url=locationUrl;
+		}else {
+			htmlContent=HttpUtil.doGet(url);
+		}
 		//3.用RoomUtil转化为对应的实体
 		Room room=AnalyzeGanJiRoomUtil.getResult(htmlContent, url);
 		//4.将room对应的json格式文件写入txt中

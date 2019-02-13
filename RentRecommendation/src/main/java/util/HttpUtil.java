@@ -8,13 +8,14 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
+import java.util.List;
+import java.util.Map;
 import java.util.zip.GZIPInputStream;
 
 
 public class HttpUtil {
-    
-    //cpdetector
-	
+    	
 	public static String doGet(String httpurl) {
         HttpURLConnection connection = null;
         InputStream is = null;
@@ -39,7 +40,7 @@ public class HttpUtil {
             connection.setReadTimeout(60000);
             connection.connect();
             if (connection.getResponseCode() == 200) {
-                is = connection.getInputStream();
+                is = connection.getInputStream(); 
                 InputStream stream = new GZIPInputStream(is);  
                 BufferedReader reader = new BufferedReader(new InputStreamReader(stream,"utf-8"));  
                 StringBuffer sb = new StringBuffer(); 
@@ -130,4 +131,28 @@ public class HttpUtil {
         }
         return result;
     }
+	
+	public static String getResponseHeaderFiled(String url,String headerFiled) {
+		URL obj;
+		try {
+			obj = new URL(url);
+			URLConnection conn = obj.openConnection();
+			Map<String, List<String>> map = conn.getHeaderFields();	
+			for (Map.Entry<String, List<String>> entry : map.entrySet()) {
+				if(entry.getKey()!=null) {
+					if(entry.getKey().equalsIgnoreCase(headerFiled)) {
+						return entry.getValue().get(0);
+					}
+				}
+			}
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 }
