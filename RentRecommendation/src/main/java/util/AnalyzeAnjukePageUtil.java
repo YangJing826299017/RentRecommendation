@@ -21,7 +21,6 @@ public class AnalyzeAnjukePageUtil {
 		for (Element oneElement : elements) {
 			String href=oneElement.attr("link");
 			listResult.add(prefix+href);
-			System.out.println(href);
 		}
 		return listResult;
 	}
